@@ -1,13 +1,49 @@
-<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>vite-project</title>
-  </head>
-  <body>
-    <div id="app"></div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Music Playlist Builder</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Smooch+Sans:wght@100..900&display=swap" rel="stylesheet">
+
+</head>
+<body style="background-color:cadetblue;">
+    <br>
+    <h1 style="text-align: center;" class="fjalla-one-regular"><u>Music Playlist Builder</u></h1>
+    <div class="color_button_container">
+        <button class="lightmode" id="light_color">Light Mode</button>
+        <button class="darkmode" id="dark_color">Dark Mode</button>
+    </div>
+    <br>
+    <section class="form-parent">
+        <form id="form">
+            <div>
+                <label for="song_name" style="font-size: 20px;">Song Name:</label> 
+                
+                <input style="font-size: 16px;" type="text" id="song_name"
+                placeholder="Song Name..">
+            </div>
+            <br>
+
+            <div>
+                <label for="image_link" style="font-size: 20px;">Image Link:</label> 
+                
+                <input style="font-size: 16px;" type="text" id="image_link"
+                placeholder="Image Link..">
+            </div>
+
+            <br>
+            <button type="submit" class="submit_button">Submit</button>
+        </form>
+    </section>
+
+    <div id="cardContainer">
+        
+    </div>
+
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
 </html>
