@@ -19,18 +19,17 @@ document.getElementById("form").addEventListener("submit", function (event) {
   event.preventDefault();
 
   function injectCard() {
+    const newCard = document.createElement("div");
+
     const songname = document.getElementById("song_name").value;
     const imagelink = document.getElementById("image_link").value;
-    const newCard = document.createElement("div");
 
     newCard.style.background = "grey";
     newCard.style.borderRadius = "25px";
-    card.style.height = "433px";
-    card.style.width = "380px";
-    card.style.display = "flex";
-    card.style.justifyContent = "center";
-
-    newCard.classList.add("card");
+    newCard.style.height = "433px";
+    newCard.style.width = "380px";
+    newCard.style.display = "flex";
+    newCard.style.justifyContent = "center";
 
     newCard.innerHTML = `
       <div class="card-info">
@@ -40,28 +39,55 @@ document.getElementById("form").addEventListener("submit", function (event) {
       <button id="remove_card" class="remove-button">Remove Card</button>
     </div>
     `;
+
+    newCard.classList.add("card");
+    document.getElementById("cardContainer").appendChild(newCard);
+    document.getElementById("form").reset();
   }
   injectCard();
 
-  const removeButton = document.querySelectorAll("remove-button");
-  console.log(removeButton);
-  // Loop through each button and add an event listener
-  removeButton.forEach((button) => {
-    button.addEventListener("click", (event) => {
-      // Get the button that was clicked
-      const clickedButton = event.target;
+  // const removeButton = document.querySelectorAll("remove-button");
+  // console.log(removeButton);
+  // // Loop through each button and add an event listener
+  // removeButton.forEach((button) => {
+  //   button.addEventListener("click", (event) => {
+  //     // Get the button that was clicked
+  //     const clickedButton = event.target;
 
-      // Find the parent card element
-      // Assuming the button is inside a .card-body, which is inside a .card
-      const card = clickedButton.closest(".card");
-      console.log(card);
-      // If a card is found, remove it
-      if (card) {
-        card.remove();
-      }
-    });
-  });
-
-  document.getElementById("cardContainer").appendChild(card);
-  document.getElementById("form").reset();
+  //     // Find the parent card element
+  //     // Assuming the button is inside a .card-body, which is inside a .card
+  //     const card = clickedButton.closest(".card");
+  //     console.log(card);
+  //     // If a card is found, remove it
+  //     if (card) {
+  //       card.remove();
+  //     }
+  //   });
+  // });
 });
+
+document
+  .getElementById("remove_card")
+  .addEventListener("remove", function (event) {
+    function removeButton() {
+      const removeButton = document.querySelectorAll("remove_card");
+
+      removeButton.forEach((button) => {
+        button.addEventListener("click", (event) => {
+          // Get the button that was clicked
+          const clickedButton = event.target;
+
+          // Find the parent card element
+          // Assuming the button is inside a .card-body, which is inside a .card
+          const card = clickedButton.closest(".card");
+          console.log(card);
+          // If a card is found, remove it
+          if (card) {
+            card.remove();
+          }
+        });
+      });
+    }
+
+    removeButton();
+  });
