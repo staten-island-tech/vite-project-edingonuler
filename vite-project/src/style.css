@@ -73,3 +73,12 @@
   display: flex; 
   margin: 0 auto;
 }
+
+.cardcontainer {
+  display: flex; /* Makes the container a flex container */
+  flex-wrap: wrap;
+  justify-content: space-between;
+  flex-direction: row; /* Arranges items in a row (default) */
+  align-items: flex-start; /* Aligns items to the top of the container */
+  gap: 20px; /* Adds space between cards */
+}

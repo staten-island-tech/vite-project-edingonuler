@@ -45,30 +45,13 @@ document.getElementById("form").addEventListener("submit", function (event) {
     document.getElementById("form").reset();
   }
   injectCard();
-
-  // const removeButton = document.querySelectorAll("remove-button");
-  // console.log(removeButton);
-  // // Loop through each button and add an event listener
-  // removeButton.forEach((button) => {
-  //   button.addEventListener("click", (event) => {
-  //     // Get the button that was clicked
-  //     const clickedButton = event.target;
-
-  //     // Find the parent card element
-  //     // Assuming the button is inside a .card-body, which is inside a .card
-  //     const card = clickedButton.closest(".card");
-  //     console.log(card);
-  //     // If a card is found, remove it
-  //     if (card) {
-  //       card.remove();
-  //     }
-  //   });
-  // });
 });
 
 document
   .getElementById("remove_card")
   .addEventListener("remove", function (event) {
+    event.preventDefault();
+
     function removeButton() {
       const removeButton = document.querySelectorAll("remove_card");
 
