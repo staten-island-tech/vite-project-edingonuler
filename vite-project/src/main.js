@@ -23,6 +23,7 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
     const songname = document.getElementById("song_name").value;
     const imagelink = document.getElementById("image_link").value;
+    const genrename = document.getElementById("genre_name").value;
 
     newCard.style.background = "grey";
     newCard.style.borderRadius = "25px";
@@ -33,10 +34,10 @@ document.getElementById("form").addEventListener("submit", function (event) {
 
     newCard.innerHTML = `
       <div class="card-info">
-      <h3 style="text-align: center;">Song Name: ${songname}</h3>
+      <h3 style="text-align: center;">Song Name: ${songname}, Genre: ${genrename}</h3>
       <img class="card_image" src="${imagelink}">
       <p></p>
-      <button id="remove_card" class="remove-button">Remove Card</button>
+      <button id="remove_card" class="delete-button">Remove Card</button>
     </div>
     `;
 
@@ -47,30 +48,19 @@ document.getElementById("form").addEventListener("submit", function (event) {
   injectCard();
 });
 
-document
-  .getElementById("remove_card")
-  .addEventListener("remove", function (event) {
-    event.preventDefault();
+const deleteButtons = document.querySelectorAll(".delete-button");
 
-    function removeButton() {
-      const removeButton = document.querySelectorAll("remove_card");
+const cardContainer = document.getElementById("cardContainer");
 
-      removeButton.forEach((button) => {
-        button.addEventListener("click", (event) => {
-          // Get the button that was clicked
-          const clickedButton = event.target;
+cardContainer.addEventListener("click", function (event) {
+  // Check if the clicked element is a delete button
+  if (event.target.classList.contains("delete-button")) {
+    // Find the parent card element
+    const cardToRemove = event.target.closest(".card");
 
-          // Find the parent card element
-          // Assuming the button is inside a .card-body, which is inside a .card
-          const card = clickedButton.closest(".card");
-          console.log(card);
-          // If a card is found, remove it
-          if (card) {
-            card.remove();
-          }
-        });
-      });
+    // Remove the card from the DOM
+    if (cardToRemove) {
+      cardToRemove.remove();
     }
-
-    removeButton();
-  });
+  }
+});
