@@ -80,7 +80,7 @@ document.getElementById("search-form").addEventListener("submit", function (even
     const isName = name === "" || song.songName === name;
     const isGenre = genre === "" || song.genreName === genre;
 
-    return isName && isGenren;
+    return isName && isGenre;
   });
 
 
