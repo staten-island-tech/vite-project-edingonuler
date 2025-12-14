@@ -73,8 +73,16 @@ const genreField = document.getElementById("search-input-genre");
 document.getElementById("search-form").addEventListener("submit", function (event) {
   event.preventDefault();
 
+  const name = nameField.value.trim();
+  const genre = genreField.value.trim();
 
-  const selected = songs.filter((song) => song.songName === nameField.value || song.genreName === genreField.value || "");
+  const selected = songs.filter((song) => {
+    const isName = name === "" || song.songName === name;
+    const isGenre = genre === "" || song.genreName === genre;
+
+    return isName && isGenren;
+  });
+
 
   document.getElementById("cardContainer").innerHTML = "";
 
