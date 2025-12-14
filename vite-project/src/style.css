@@ -54,6 +54,16 @@
   cursor: pointer;
 }
 
+.card {
+  background: grey;
+  border-radius: 25px;
+  height: 433px;
+  width: 380px;
+  display: flex;
+  justify-content: center;
+}
+
+
 .card_image {
   display: block;
   height: 300px;

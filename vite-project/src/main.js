@@ -4,6 +4,8 @@ const light_button = document.getElementById("light_color");
 
 const dark_button = document.getElementById("dark_color");
 
+const songs = [];
+
 // Add an event listener to the button
 light_button.addEventListener("click", function () {
   // Change the background color of the body
@@ -25,13 +27,6 @@ document.getElementById("form").addEventListener("submit", function (event) {
     const imagelink = document.getElementById("image_link").value;
     const genrename = document.getElementById("genre_name").value;
 
-    newCard.style.background = "grey";
-    newCard.style.borderRadius = "25px";
-    newCard.style.height = "433px";
-    newCard.style.width = "380px";
-    newCard.style.display = "flex";
-    newCard.style.justifyContent = "center";
-
     newCard.innerHTML = `
       <div class="card-info">
       <h3 style="text-align: center;">Song Name: ${songname}, Genre: ${genrename}</h3>
@@ -40,6 +35,12 @@ document.getElementById("form").addEventListener("submit", function (event) {
       <button id="remove_card" class="delete-button">Remove Card</button>
     </div>
     `;
+
+    songs.push({
+      songName: songname,
+      genreName: genrename,
+      imageLink: imagelink
+    })
 
     newCard.classList.add("card");
     document.getElementById("cardContainer").appendChild(newCard);
@@ -63,4 +64,34 @@ cardContainer.addEventListener("click", function (event) {
       cardToRemove.remove();
     }
   }
+});
+
+const nameField = document.getElementById("search-input-name");
+const genreField = document.getElementById("search-input-genre");
+
+
+document.getElementById("search-form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+
+  const selected = songs.filter((song) => song.songName === nameField.value || song.genreName === genreField.value || "");
+
+  document.getElementById("cardContainer").innerHTML = "";
+
+  selected.forEach((song) => {
+    const newCard = document.createElement("div");
+
+    newCard.innerHTML = `
+      <div class="card-info">
+      <h3 style="text-align: center;">Song Name: ${song.songName}, Genre: ${song.genreName}</h3>
+      <img class="card_image" src="${song.imageLink}">
+      <p></p>
+      <button id="remove_card" class="delete-button">Remove Card</button>
+    </div>
+    `;
+
+    newCard.classList.add("card");
+    document.getElementById("cardContainer").appendChild(newCard);
+  })
+
 });
