@@ -4,7 +4,23 @@ const light_button = document.getElementById("light_color");
 
 const dark_button = document.getElementById("dark_color");
 
-const songs = [];
+const songs = [{
+  songName: "Song Name 1",
+  genreName: "Pop",
+  imageLink: "https://cdn8.openculture.com/2018/02/26214700/First-Aid-Kit-Ruins-e1519715301105.jpg"
+}, {
+  songName: "Song Name 2",
+  genreName: "Pop",
+  imageLink: "https://cdn8.openculture.com/2018/02/26215751/Miley-Cyrus.jpg"
+}, {
+  songName: "Song Name 3",
+  genreName: "Rap",
+  imageLink: "https://cdn8.openculture.com/2018/02/26214611/Arlo-safe-e1519715317729.jpg"
+}];
+
+songs.forEach(song => {
+  injectCard(song.songName, song.imageLink, song.genreName)
+})
 
 // Add an event listener to the button
 light_button.addEventListener("click", function () {
@@ -17,17 +33,10 @@ dark_button.addEventListener("click", function () {
   document.body.style.backgroundColor = "#96613d"; // Or
 });
 
-document.getElementById("form").addEventListener("submit", function (event) {
-  event.preventDefault();
+function injectCard(songname, imagelink, genrename) {
+  const newCard = document.createElement("div");
 
-  function injectCard() {
-    const newCard = document.createElement("div");
-
-    const songname = document.getElementById("song_name").value;
-    const imagelink = document.getElementById("image_link").value;
-    const genrename = document.getElementById("genre_name").value;
-
-    newCard.innerHTML = `
+  newCard.innerHTML = `
       <div class="card-info">
       <h3 style="text-align: center;">Song Name: ${songname}, Genre: ${genrename}</h3>
       <img class="card_image" src="${imagelink}">
@@ -36,17 +45,27 @@ document.getElementById("form").addEventListener("submit", function (event) {
     </div>
     `;
 
-    songs.push({
-      songName: songname,
-      genreName: genrename,
-      imageLink: imagelink
-    })
+  songs.push({
+    songName: songname,
+    genreName: genrename,
+    imageLink: imagelink
+  })
 
-    newCard.classList.add("card");
-    document.getElementById("cardContainer").appendChild(newCard);
-    document.getElementById("form").reset();
-  }
-  injectCard();
+  newCard.classList.add("card");
+  document.getElementById("cardContainer").appendChild(newCard);
+  document.getElementById("form").reset();
+}
+
+document.getElementById("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+
+
+    injectCard(
+        document.getElementById("song_name").value,
+        document.getElementById("image_link").value,
+        document.getElementById("genre_name").value
+        )
+
 });
 
 const deleteButtons = document.querySelectorAll(".delete-button");
